@@ -1,0 +1,5 @@
+<!-- res/drawable/rounded_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FF0000" /> <!-- The background color, yellow -->
+    <corners android:radius="2dp" /> <!-- Rounded corners with 2dp radius -->
+</shape>

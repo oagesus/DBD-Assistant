@@ -1,0 +1,162 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@android:drawable/dialog_holo_dark_frame">
+
+    <!-- Main Content Container -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Title and Image/Button Container -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Container for Background Image and Button -->
+            <LinearLayout
+                android:id="@+id/button_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <!-- Container for Background Image and Button -->
+                <FrameLayout
+                    android:id="@+id/square_container"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:background="@drawable/border"
+                    android:padding="2dp">
+
+                    <!-- ImageView for background (perk_bg.png) -->
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/perk_bg"
+                        android:scaleType="centerCrop" />
+
+                    <!-- Button Replica Container, now centered inside the FrameLayout -->
+                    <FrameLayout
+                        android:id="@+id/button_replica_container"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/perk_very_rare">
+
+                        <!-- Replica Icon -->
+                        <ImageView
+                            android:id="@+id/replica_icon"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/icon_placeholder"
+                            android:contentDescription="@string/replica_icon_description" />
+                    </FrameLayout>
+                </FrameLayout>
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="32dp"
+                android:orientation="vertical"
+                android:gravity="top">
+            <TextView
+                android:id="@+id/popup_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="Perk Name"
+                android:textSize="22sp"
+                android:textColor="#aaa9a9"
+                android:paddingBottom="8dp"
+                android:layout_marginStart="16dp" />
+
+                <!-- Vertical ScrollView for Tags -->
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:layout_gravity="left"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="0dp"
+                    android:scrollbars="vertical">
+
+                    <!-- Tag Container using FlexboxLayout -->
+                    <com.google.android.flexbox.FlexboxLayout
+                        android:id="@+id/tag_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:flexDirection="row"
+                        app:flexWrap="wrap">
+
+                        <!-- Tag Item Example -->
+                        <TextView
+                            android:id="@+id/tag_item_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:padding="4dp"
+                            android:text="Tag 1"
+                            android:textColor="#ffffff"
+                            android:background="@drawable/rounded_tag" />
+
+                        <TextView
+                            android:id="@+id/tag_item_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:padding="4dp"
+                            android:text="Tag 2"
+                            android:textColor="#ffffff"
+                            android:background="@drawable/rounded_tag" />
+
+                        <!-- More tags as needed -->
+                    </com.google.android.flexbox.FlexboxLayout>
+                </ScrollView>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Description Section -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:scrollbarThumbVertical="@android:color/white"
+            android:scrollbarTrackVertical="@android:color/darker_gray">
+
+            <WebView
+                android:id="@+id/popup_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="This is a popup for a perk description."
+                android:textSize="14sp"
+                android:paddingBottom="10dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="0dp"
+                android:scrollbars="vertical"
+                android:background="@android:color/transparent" />
+        </ScrollView>
+    </LinearLayout>
+
+    <!-- Close Button -->
+    <ImageButton
+        android:id="@+id/close_popup"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="@android:color/transparent"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        android:contentDescription="Close Popup" />
+</FrameLayout>

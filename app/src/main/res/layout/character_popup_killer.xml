@@ -1,0 +1,253 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="0dp"
+    android:background="@android:drawable/dialog_holo_dark_frame">
+
+    <!-- Dim background overlay -->
+    <View
+        android:id="@+id/background_overlay_character"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"
+        android:alpha="0.3"
+        android:visibility="gone" />
+
+    <!-- Main Content Container -->
+    <LinearLayout
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- First Container for Background Image and Button -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Container for Background Image and Button -->
+            <LinearLayout
+                android:id="@+id/button_container_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="-20dp"
+                android:gravity="center">
+
+                <!-- Container for Background Image and Button -->
+                <FrameLayout
+                    android:id="@+id/button_replica_container"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:padding="0dp">
+
+                    <!-- ImageView for background (perk_bg.png) -->
+                    <ImageView
+                        android:id="@+id/character_portrait_killer"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/character_portrait_killer"
+                        android:scaleType="centerCrop" />
+
+                    <!-- Replica Icon -->
+                    <ImageView
+                        android:id="@+id/replica_icon_killer"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:paddingEnd="5dp"
+                        android:paddingStart="5dp"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/character_killer_trapper"
+                        android:contentDescription="@string/replica_icon_description" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- Title Section -->
+            <TextView
+                android:id="@+id/popup_title_killer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:layout_toEndOf="@id/button_container_1"
+                android:layout_marginStart="0dp"
+                android:text="Killer Name"
+                android:textSize="22sp"
+                android:textColor="#aaa9a9"
+                android:paddingBottom="8dp" />
+
+            <!-- Second WebView (Under the Title and to the Right of the Container) -->
+            <WebView
+                android:id="@+id/popup_description_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/popup_title_killer"
+                android:layout_toEndOf="@id/button_container_1"
+                android:layout_marginStart="-8dp"
+                android:layout_marginTop="0dp"
+                android:text="This is the second WebView for additional description."
+                android:textSize="14sp"
+                android:paddingBottom="0dp"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp"
+                android:scrollbars="vertical"
+                android:background="@android:color/transparent" />
+        </RelativeLayout>
+
+        <!-- Scrollable Content Container -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scrollbarThumbVertical="@android:color/white"
+            android:scrollbarTrackVertical="@android:color/darker_gray">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- First WebView (Under the Container and Second WebView) -->
+                <WebView
+                    android:id="@+id/popup_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="This is a popup for a perk description."
+                    android:textSize="14sp"
+                    android:paddingBottom="10dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="0dp"
+                    android:scrollbars="vertical"
+                    android:background="@android:color/transparent" />
+
+                <!-- Second Container for Background Image and Button -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="16dp">
+
+                    <!-- Container for Background Image and Button -->
+                    <LinearLayout
+                        android:id="@+id/button_container_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <!-- Container for Background Image and Button -->
+                        <FrameLayout
+                            android:id="@+id/square_container_perks"
+                            android:layout_width="match_parent"
+                            android:layout_height="125dp"
+                            android:background="@drawable/border"
+                            android:padding="2dp">
+
+                            <!-- ImageView for background (perk_bg.png) -->
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/perk_bg"
+                                android:scaleType="centerCrop" />
+
+                            <!-- Horizontal LinearLayout to hold 3 button replica containers -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                android:weightSum="3">
+
+                                <!-- First Button Replica Container -->
+                                <FrameLayout
+                                    android:id="@+id/button_replica_container_1"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/perk_very_rare"
+                                    android:padding="0dp">
+
+                                    <!-- Replica Icon -->
+                                    <ImageView
+                                        android:id="@+id/perk_icon_1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center"
+                                        android:src="@drawable/icon_placeholder"
+                                        android:contentDescription="@string/replica_icon_description" />
+                                </FrameLayout>
+
+                                <!-- Second Button Replica Container -->
+                                <FrameLayout
+                                    android:id="@+id/button_replica_container_2"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/perk_very_rare"
+                                    android:padding="0dp">
+
+                                    <!-- Replica Icon -->
+                                    <ImageView
+                                        android:id="@+id/perk_icon_2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center"
+                                        android:src="@drawable/icon_placeholder"
+                                        android:contentDescription="@string/replica_icon_description" />
+                                </FrameLayout>
+
+                                <!-- Third Button Replica Container -->
+                                <FrameLayout
+                                    android:id="@+id/button_replica_container_3"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/perk_very_rare"
+                                    android:padding="0dp">
+
+                                    <!-- Replica Icon -->
+                                    <ImageView
+                                        android:id="@+id/perk_icon_3"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center"
+                                        android:src="@drawable/icon_placeholder"
+                                        android:contentDescription="@string/replica_icon_description" />
+                                </FrameLayout>
+                            </LinearLayout>
+                        </FrameLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <!-- Invisible ConstraintLayout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/text_container_shrine"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible" />
+
+    <!-- Invisible ConstraintLayout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_perks_shrine"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible" />
+
+    <!-- Close Button -->
+    <ImageButton
+        android:id="@+id/close_popup_killer"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/transparent"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        android:contentDescription="Close Popup" />
+</FrameLayout>

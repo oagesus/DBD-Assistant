@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomSearchViewStyle">
+        <item name="android:textColorHint">@android:color/darker_gray</item> <!-- Custom hint color -->
+        <item name="android:textColor">@android:color/white</item> <!-- Optional: set text color if needed -->
+    </style>
+    <style name="CustomSpinnerDialogTheme" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="android:background">@color/dark_grey</item>
+    </style>
+</resources>

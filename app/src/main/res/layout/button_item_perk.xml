@@ -1,0 +1,15 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/button_item"
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:background="@drawable/perk_very_rare">
+
+    <!-- Icon for the button -->
+    <ImageView
+        android:id="@+id/button_icon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:contentDescription="@string/button_icon_description" />
+</FrameLayout>

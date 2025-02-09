@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">DBD Guide</string>
+    <string name="close_popup">Close</string>
+    <string name="button_icon_description">Icon for the button</string>
+    <string name="replica_icon_description">Replica Button Icon</string>
+    <string-array name="spinner_items">
+        <item>A-Z</item>
+        <item>Z-A</item>
+        <item>Old-New</item>
+        <item>New-Old</item>
+    </string-array>
+</resources>

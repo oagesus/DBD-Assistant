@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Internet Premission -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.DBDGuide"
+        tools:targetApi="31">
+
+        <!-- Main Activity -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.DBDGuide"
+            android:screenOrientation="portrait"> <!-- Lock orientation to portrait -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Perks Killer Survivor Activity -->
+        <activity
+            android:name=".PerksKillerSurvivorActivity"
+            android:label="Perks Killer Survivor"
+            android:theme="@style/Theme.DBDGuide"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!-- Perks Killer Activity -->
+        <activity
+            android:name=".PerksKillerActivity"
+            android:label="Perks Killer"
+            android:theme="@style/Theme.DBDGuide"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!-- Perks Survivor Activity -->
+        <activity
+            android:name=".PerksSurvivorActivity"
+            android:label="Perks Survivor"
+            android:theme="@style/Theme.DBDGuide"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!-- Maps Activity -->
+        <activity
+            android:name=".MapsActivity"
+            android:label="Maps"
+            android:theme="@style/Theme.DBDGuide"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!-- Characters Killer Activity -->
+        <activity
+            android:name=".CharactersKillerActivity"
+            android:label="Characters Killers"
+            android:theme="@style/Theme.DBDGuide"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!-- Characters Survivor Activity -->
+        <activity
+            android:name=".CharactersSurvivorActivity"
+            android:label="Characters Survivors"
+            android:theme="@style/Theme.DBDGuide"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!-- Shrine of Secrets Activity -->
+        <activity
+            android:name=".ShrineOfSecretsActivity"
+            android:label="Shrine of Secrets"
+            android:theme="@style/Theme.DBDGuide"
+            android:screenOrientation="portrait">
+        </activity>
+    </application>
+
+</manifest>
