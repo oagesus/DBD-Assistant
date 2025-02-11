@@ -1,3 +1,4 @@
+<p><b>Google Play Store Release</b>: <i>Coming Soon</i></p>
 <p>This app is designed to assist players of <i>Dead&nbsp;by&nbsp;Daylight</i> by providing essential information in a clear and well-structured layout, regardless of being a beginner or seasoned veteran.</p>
 <p><b>Current App Features</b>:</p>
 <ul>
