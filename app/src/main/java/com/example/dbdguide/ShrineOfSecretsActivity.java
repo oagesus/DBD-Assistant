@@ -268,6 +268,10 @@ public class ShrineOfSecretsActivity extends AppCompatActivity {
                 hrefText = hrefText.replace(":", "");
             }
 
+            if (hrefText.contains("&")) {
+                hrefText = hrefText.replace("&", "and");
+            }
+
             // Convert to lowercase and prepare possible resource names
             hrefText = hrefText.toLowerCase();
             String killerDrawableName = "killer_" + hrefText;
