@@ -317,7 +317,8 @@ public class ShrineOfSecretsActivity extends AppCompatActivity {
                     findViewById(R.id.close_popup_killer),
                     findViewById(R.id.square_container_perks),
                     findViewById(R.id.text_container_shrine),
-                    findViewById(R.id.container_perks_shrine)
+                    findViewById(R.id.container_perks_shrine),
+                    findViewById(R.id.button_generate)
             );
         }
     }

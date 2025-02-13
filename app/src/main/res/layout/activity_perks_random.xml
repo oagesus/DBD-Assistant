@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/imageContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="0dp"
+    android:background="@color/darker_grey">
+
+    <!-- Dim background overlay -->
+    <View
+        android:id="@+id/background_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"
+        android:alpha="0.3"
+        android:visibility="gone" />
+
+    <!-- New Container for TextViews -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/text_container_shrine"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/rounded_background"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/container_perks_shrine"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="16dp">
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:entries="@array/spinner_items_random"
+            android:spinnerMode="dialog"
+            android:background="@drawable/outline"
+            android:theme="@style/CustomSpinnerDialogTheme"
+            android:fontFamily="sans-serif"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintEnd_toStartOf="@+id/button_generate"
+            app:layout_constraintHorizontal_chainStyle="packed" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_generate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Generate"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif"
+            android:textAllCaps="false"
+            android:background="@drawable/outline"
+            android:paddingVertical="10dp"
+            android:minHeight="0dp"
+            android:includeFontPadding="false"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/spinner"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Centered Container for all FrameLayouts (with 16dp margin) -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_perks_shrine"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/rounded_background"
+        android:clipToOutline="true"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_container_shrine"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_margin="16dp">
+
+        <!-- Horizontal Guideline at 50% of parent's height -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineCenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <!-- Row 1: FrameLayout containing both ImageViews -->
+        <FrameLayout
+            android:id="@+id/frame1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.4"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintBottom_toTopOf="@id/guidelineCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="24dp">
+
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/perk_very_rare" />
+
+            <ImageView
+                android:id="@+id/shrine_perk_icon_3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/icon_placeholder" />
+        </FrameLayout>
+
+        <!-- Row 2: FrameLayout for imageView2 -->
+        <FrameLayout
+            android:id="@+id/frame2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.4"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintTop_toTopOf="@id/guidelineCenter"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/frame3"
+            android:layout_marginEnd="0dp">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/perk_very_rare" />
+
+            <ImageView
+                android:id="@+id/shrine_perk_icon_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/icon_placeholder" />
+        </FrameLayout>
+
+        <!-- Row 2: FrameLayout for imageView3 -->
+        <FrameLayout
+            android:id="@+id/frame3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.4"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintTop_toTopOf="@id/guidelineCenter"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineCenter"
+            app:layout_constraintStart_toEndOf="@id/frame2"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="16dp">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/perk_very_rare" />
+
+            <ImageView
+                android:id="@+id/shrine_perk_icon_4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/icon_placeholder" />
+        </FrameLayout>
+
+        <!-- Row 3: FrameLayout containing both ImageViews -->
+        <FrameLayout
+            android:id="@+id/frame4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.4"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintTop_toBottomOf="@id/guidelineCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="24dp">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/perk_very_rare" />
+
+            <ImageView
+                android:id="@+id/shrine_perk_icon_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/icon_placeholder" />
+        </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

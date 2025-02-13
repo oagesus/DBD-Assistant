@@ -21,287 +21,341 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Grid of Buttons -->
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!-- Scrollable Grid of Buttons -->
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:fillViewport="true"
+        android:scrollbars="vertical"
+        android:scrollbarThumbVertical="@color/white"
         app:layout_constraintTop_toBottomOf="@id/textView"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Vertical Guideline for 50% split -->
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
+        <!-- This inner layout now wraps its content so that the ScrollView will scroll if needed -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.5" />
+            android:layout_marginTop="16dp">
 
-        <!-- Row 1: Perks -->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/buttonPerksKiller"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_margin="8dp"
-            android:background="@drawable/rounded_button"
-            android:clickable="true"
-            android:focusable="true"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/guideline"
-            app:layout_constraintDimensionRatio="1:1">
-
-            <!-- Icon (50% of button width, square) -->
-            <ImageView
-                android:id="@+id/iconPerksKiller"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:src="@drawable/icon_main_perks_killer"
-                app:layout_constraintWidth_percent="0.4"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/textPerksKiller"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintVertical_chainStyle="packed" />
-
-            <!-- Text underneath the icon -->
-            <TextView
-                android:id="@+id/textPerksKiller"
+            <!-- Vertical Guideline for 50% split -->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Perks\nKiller"
-                android:textSize="18dp"
-                android:textColor="#ffffff"
-                android:gravity="center"
-                android:layout_marginTop="10dp"
-                app:layout_constraintTop_toBottomOf="@id/iconPerksKiller"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/buttonPerksSurvivor"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_margin="8dp"
-            android:background="@drawable/rounded_button"
-            android:clickable="true"
-            android:focusable="true"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/guideline"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintDimensionRatio="1:1">
-
-            <ImageView
-                android:id="@+id/iconPerksSurvivor"
+            <!-- Row 1: Perks -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/buttonPerksKiller"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:src="@drawable/icon_main_perks_survivor"
-                app:layout_constraintWidth_percent="0.4"
-                app:layout_constraintDimensionRatio="1:1"
+                android:layout_margin="8dp"
+                android:background="@drawable/rounded_button"
+                android:clickable="true"
+                android:focusable="true"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/textPerksSurvivor"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintVertical_chainStyle="packed" />
+                app:layout_constraintEnd_toStartOf="@id/guideline"
+                app:layout_constraintDimensionRatio="1:1">
 
-            <TextView
-                android:id="@+id/textPerksSurvivor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Perks\nSurvivor"
-                android:textSize="18dp"
-                android:textColor="#ffffff"
-                android:gravity="center"
-                android:layout_marginTop="10dp"
-                app:layout_constraintTop_toBottomOf="@id/iconPerksSurvivor"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <!-- Icon (50% of button width, square) -->
+                <ImageView
+                    android:id="@+id/iconPerksKiller"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/icon_main_perks_killer"
+                    app:layout_constraintWidth_percent="0.4"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/textPerksKiller"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
 
-        <!-- Row 2: Characters -->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/buttonCharactersKiller"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/rounded_button"
-            android:clickable="true"
-            android:focusable="true"
-            app:layout_constraintTop_toBottomOf="@id/buttonPerksKiller"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/guideline"
-            app:layout_constraintDimensionRatio="1:1">
+                <!-- Text underneath the icon -->
+                <TextView
+                    android:id="@+id/textPerksKiller"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Perks\nKiller"
+                    android:textSize="18dp"
+                    android:textColor="#ffffff"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/iconPerksKiller"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageView
-                android:id="@+id/iconCharactersKiller"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/buttonPerksSurvivor"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:src="@drawable/icon_main_characters_killer"
-                app:layout_constraintWidth_percent="0.4"
-                app:layout_constraintDimensionRatio="1:1"
+                android:layout_margin="8dp"
+                android:background="@drawable/rounded_button"
+                android:clickable="true"
+                android:focusable="true"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/textCharactersKiller"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guideline"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintVertical_chainStyle="packed" />
+                app:layout_constraintDimensionRatio="1:1">
 
-            <TextView
-                android:id="@+id/textCharactersKiller"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Characters\nKiller"
-                android:textSize="18dp"
-                android:textColor="#ffffff"
-                android:gravity="center"
-                android:layout_marginTop="10dp"
-                app:layout_constraintTop_toBottomOf="@id/iconCharactersKiller"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/iconPerksSurvivor"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/icon_main_perks_survivor"
+                    app:layout_constraintWidth_percent="0.4"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/textPerksSurvivor"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/buttonCharactersSurvivor"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/rounded_button"
-            android:clickable="true"
-            android:focusable="true"
-            app:layout_constraintTop_toBottomOf="@id/buttonPerksSurvivor"
-            app:layout_constraintStart_toEndOf="@id/guideline"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintDimensionRatio="1:1">
+                <TextView
+                    android:id="@+id/textPerksSurvivor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Perks\nSurvivor"
+                    android:textSize="18dp"
+                    android:textColor="#ffffff"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/iconPerksSurvivor"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageView
-                android:id="@+id/iconCharactersSurvivor"
+            <!-- Row 2: Characters -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/buttonCharactersKiller"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:src="@drawable/icon_main_characters_survivor"
-                app:layout_constraintWidth_percent="0.4"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/textCharactersSurvivor"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/rounded_button"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintTop_toBottomOf="@id/buttonPerksKiller"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintVertical_chainStyle="packed" />
+                app:layout_constraintEnd_toStartOf="@id/guideline"
+                app:layout_constraintDimensionRatio="1:1">
 
-            <TextView
-                android:id="@+id/textCharactersSurvivor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Characters\nSurvivor"
-                android:textSize="18dp"
-                android:textColor="#ffffff"
-                android:gravity="center"
-                android:layout_marginTop="10dp"
-                app:layout_constraintTop_toBottomOf="@id/iconCharactersSurvivor"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/iconCharactersKiller"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/icon_main_characters_killer"
+                    app:layout_constraintWidth_percent="0.4"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/textCharactersKiller"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
 
-        <!-- Row 3: Maps & Shrine -->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/buttonMaps"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/rounded_button"
-            android:clickable="true"
-            android:focusable="true"
-            app:layout_constraintTop_toBottomOf="@id/buttonCharactersKiller"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/guideline"
-            app:layout_constraintDimensionRatio="1:1">
+                <TextView
+                    android:id="@+id/textCharactersKiller"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Characters\nKiller"
+                    android:textSize="18dp"
+                    android:textColor="#ffffff"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/iconCharactersKiller"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageView
-                android:id="@+id/iconMaps"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/buttonCharactersSurvivor"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:src="@drawable/icon_main_maps"
-                app:layout_constraintWidth_percent="0.4"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/textMaps"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/rounded_button"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintTop_toBottomOf="@id/buttonPerksSurvivor"
+                app:layout_constraintStart_toEndOf="@id/guideline"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintVertical_chainStyle="packed" />
+                app:layout_constraintDimensionRatio="1:1">
 
-            <TextView
-                android:id="@+id/textMaps"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Map\nLayouts"
-                android:textSize="18dp"
-                android:textColor="#ffffff"
-                android:gravity="center"
-                android:layout_marginTop="10dp"
-                app:layout_constraintTop_toBottomOf="@id/iconMaps"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/iconCharactersSurvivor"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/icon_main_characters_survivor"
+                    app:layout_constraintWidth_percent="0.4"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/textCharactersSurvivor"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/buttonShrineOfSecrets"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/rounded_button"
-            android:clickable="true"
-            android:focusable="true"
-            app:layout_constraintTop_toBottomOf="@id/buttonCharactersSurvivor"
-            app:layout_constraintStart_toEndOf="@id/guideline"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintDimensionRatio="1:1">
+                <TextView
+                    android:id="@+id/textCharactersSurvivor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Characters\nSurvivor"
+                    android:textSize="18dp"
+                    android:textColor="#ffffff"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/iconCharactersSurvivor"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageView
-                android:id="@+id/iconShrineOfSecrets"
+            <!-- Row 3: Maps & Shrine -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/buttonMaps"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:src="@drawable/icon_main_shrine"
-                app:layout_constraintWidth_percent="0.4"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/textShrineOfSecrets"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/rounded_button"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintTop_toBottomOf="@id/buttonCharactersKiller"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintVertical_chainStyle="packed" />
+                app:layout_constraintEnd_toStartOf="@id/guideline"
+                app:layout_constraintDimensionRatio="1:1">
 
-            <TextView
-                android:id="@+id/textShrineOfSecrets"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Shrine of\nSecrets"
-                android:textSize="18dp"
-                android:textColor="#ffffff"
-                android:gravity="center"
-                android:layout_marginTop="10dp"
-                app:layout_constraintTop_toBottomOf="@id/iconShrineOfSecrets"
-                app:layout_constraintStart_toStartOf="parent"
+                <ImageView
+                    android:id="@+id/iconMaps"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/icon_main_maps"
+                    app:layout_constraintWidth_percent="0.4"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/textMaps"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/textMaps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Map\nLayouts"
+                    android:textSize="18dp"
+                    android:textColor="#ffffff"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/iconMaps"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/buttonShrineOfSecrets"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/rounded_button"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintTop_toBottomOf="@id/buttonCharactersSurvivor"
+                app:layout_constraintStart_toEndOf="@id/guideline"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintDimensionRatio="1:1">
+
+                <ImageView
+                    android:id="@+id/iconShrineOfSecrets"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/icon_main_shrine"
+                    app:layout_constraintWidth_percent="0.4"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/textShrineOfSecrets"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/textShrineOfSecrets"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Shrine of\nSecrets"
+                    android:textSize="18dp"
+                    android:textColor="#ffffff"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/iconShrineOfSecrets"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/buttonPerksRandom"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/rounded_button"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintTop_toBottomOf="@id/buttonMaps"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/guideline"
+                app:layout_constraintDimensionRatio="1:1">
+
+                <ImageView
+                    android:id="@+id/iconPerksRandom"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/icon_main_perks_killer"
+                    app:layout_constraintWidth_percent="0.4"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/textPerksRandom"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/textPerksRandom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Random Perks\nGenerator"
+                    android:textSize="18dp"
+                    android:textColor="#ffffff"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/iconPerksRandom"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

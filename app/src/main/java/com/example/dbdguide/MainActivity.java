@@ -65,5 +65,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        ConstraintLayout buttonPerksRandom = findViewById(R.id.buttonPerksRandom);
+        buttonPerksRandom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, PerksRandomActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -269,11 +270,16 @@ public class ButtonAdapterCharactersSurvivor extends RecyclerView.Adapter<Button
                         containerPerksShrine.setAlpha(0.3f);
                     }
 
+                    Button buttonGenerate = popupView.findViewById(R.id.button_generate);
+                    if (buttonGenerate != null)    {
+                        buttonGenerate.setAlpha(0.3f);
+                    }
+
                     int perkResId = perkIcons.get(0);
                     for (PerkItem perk : killerPerks) {
                         if (perk.getIconResId() == perkResId) {
                             ButtonAdapterPerks perkAdapter = new ButtonAdapterPerks(context, killerPerks);
-                            perkAdapter.showPopupWindow(rootView, perk.getLabel(), perk.getDescription(), perk.getIconResId(), perk.getTags(), characterBackgroundOverlay, characterPortraitKiller, replicaIconKiller, popupDescription, popupDescription2, popupTitleKiller, closeButtonKiller, squareContainerPerks, textContainerShrine, containerPerksShrine);
+                            perkAdapter.showPopupWindow(rootView, perk.getLabel(), perk.getDescription(), perk.getIconResId(), perk.getTags(), characterBackgroundOverlay, characterPortraitKiller, replicaIconKiller, popupDescription, popupDescription2, popupTitleKiller, closeButtonKiller, squareContainerPerks, textContainerShrine, containerPerksShrine, buttonGenerate);
                             break;
                         }
                     }
@@ -331,11 +337,16 @@ public class ButtonAdapterCharactersSurvivor extends RecyclerView.Adapter<Button
                         containerPerksShrine.setAlpha(0.3f);
                     }
 
+                    Button buttonGenerate = popupView.findViewById(R.id.button_generate);
+                    if (buttonGenerate != null)    {
+                        buttonGenerate.setAlpha(0.3f);
+                    }
+
                     int perkResId = perkIcons.get(1);
                     for (PerkItem perk : killerPerks) {
                         if (perk.getIconResId() == perkResId) {
                             ButtonAdapterPerks perkAdapter = new ButtonAdapterPerks(context, killerPerks);
-                            perkAdapter.showPopupWindow(rootView, perk.getLabel(), perk.getDescription(), perk.getIconResId(), perk.getTags(), characterBackgroundOverlay, characterPortraitKiller, replicaIconKiller, popupDescription, popupDescription2, popupTitleKiller, closeButtonKiller, squareContainerPerks, textContainerShrine, containerPerksShrine);
+                            perkAdapter.showPopupWindow(rootView, perk.getLabel(), perk.getDescription(), perk.getIconResId(), perk.getTags(), characterBackgroundOverlay, characterPortraitKiller, replicaIconKiller, popupDescription, popupDescription2, popupTitleKiller, closeButtonKiller, squareContainerPerks, textContainerShrine, containerPerksShrine, buttonGenerate);
                             break;
                         }
                     }
@@ -393,11 +404,16 @@ public class ButtonAdapterCharactersSurvivor extends RecyclerView.Adapter<Button
                         containerPerksShrine.setAlpha(0.3f);
                     }
 
+                    Button buttonGenerate = popupView.findViewById(R.id.button_generate);
+                    if (buttonGenerate != null)    {
+                        buttonGenerate.setAlpha(0.3f);
+                    }
+
                     int perkResId = perkIcons.get(2);
                     for (PerkItem perk : killerPerks) {
                         if (perk.getIconResId() == perkResId) {
                             ButtonAdapterPerks perkAdapter = new ButtonAdapterPerks(context, killerPerks);
-                            perkAdapter.showPopupWindow(rootView, perk.getLabel(), perk.getDescription(), perk.getIconResId(), perk.getTags(), characterBackgroundOverlay, characterPortraitKiller, replicaIconKiller, popupDescription, popupDescription2, popupTitleKiller, closeButtonKiller, squareContainerPerks, textContainerShrine, containerPerksShrine);
+                            perkAdapter.showPopupWindow(rootView, perk.getLabel(), perk.getDescription(), perk.getIconResId(), perk.getTags(), characterBackgroundOverlay, characterPortraitKiller, replicaIconKiller, popupDescription, popupDescription2, popupTitleKiller, closeButtonKiller, squareContainerPerks, textContainerShrine, containerPerksShrine, buttonGenerate);
                             break;
                         }
                     }

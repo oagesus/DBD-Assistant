@@ -85,6 +85,14 @@
             android:theme="@style/Theme.DBDGuide"
             android:screenOrientation="portrait">
         </activity>
+
+        <!-- Perks Random Activity -->
+        <activity
+            android:name=".PerksRandomActivity"
+            android:label="Shrine of Secrets"
+            android:theme="@style/Theme.DBDGuide"
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>

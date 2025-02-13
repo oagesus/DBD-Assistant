@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -86,8 +87,10 @@ public class ButtonAdapterPerks extends RecyclerView.Adapter<ButtonAdapterPerks.
 
             ConstraintLayout containerPerksShrine = ((Activity) context).findViewById(R.id.container_perks_shrine);
 
+            Button buttonGenerate = ((Activity) context).findViewById(R.id.button_generate);
+
             // Call showPopupWindow with all 6 arguments
-            showPopupWindow(v, buttonText, buttonDescription, iconResId, tagTexts, characterBackgroundOverlay, characterPortraitKiller, replicaIconKiller, popupDescription, popupDescription2, popupTitleKiller, closeButtonKiller, squareContainerPerks, textContainerShrine, containerPerksShrine);
+            showPopupWindow(v, buttonText, buttonDescription, iconResId, tagTexts, characterBackgroundOverlay, characterPortraitKiller, replicaIconKiller, popupDescription, popupDescription2, popupTitleKiller, closeButtonKiller, squareContainerPerks, textContainerShrine, containerPerksShrine, buttonGenerate);
         });
     }
 
@@ -102,7 +105,7 @@ public class ButtonAdapterPerks extends RecyclerView.Adapter<ButtonAdapterPerks.
         return 0; // For now, it returns the same value for all items (single item type).
     }
 
-    public void showPopupWindow(View anchorView, String buttonText, String buttonDescription, int iconResId, List<String> tagTexts, View characterBackgroundOverlay, ImageView characterPortraitKiller, ImageView replicaIconKiller, WebView popupDescription, WebView popupDescription2, TextView popupTitleKiller, View closeButtonKiller, FrameLayout squareContainerPerks, ConstraintLayout textContainerShrine, ConstraintLayout containerPerksShrine) {
+    public void showPopupWindow(View anchorView, String buttonText, String buttonDescription, int iconResId, List<String> tagTexts, View characterBackgroundOverlay, ImageView characterPortraitKiller, ImageView replicaIconKiller, WebView popupDescription, WebView popupDescription2, TextView popupTitleKiller, View closeButtonKiller, FrameLayout squareContainerPerks, ConstraintLayout textContainerShrine, ConstraintLayout containerPerksShrine, Button buttonGenerate) {
         // Inflate the popup layout
         View popupView = LayoutInflater.from(context).inflate(R.layout.perk_popup, null);
 
@@ -253,6 +256,10 @@ public class ButtonAdapterPerks extends RecyclerView.Adapter<ButtonAdapterPerks.
             containerPerksShrine.setAlpha(0.3f);
         }
 
+        if (buttonGenerate != null)    {
+            buttonGenerate.setAlpha(0.3f);
+        }
+
         // Close the overlay and restore the SearchView when the popup is dismissed
         popupWindow.setOnDismissListener(() -> {
             if (backgroundOverlay != null) {
@@ -311,6 +318,10 @@ public class ButtonAdapterPerks extends RecyclerView.Adapter<ButtonAdapterPerks.
 
             if (containerPerksShrine != null)    {
                 containerPerksShrine.setAlpha(1f);
+            }
+
+            if (buttonGenerate != null)    {
+                buttonGenerate.setAlpha(1f);
             }
         });
 

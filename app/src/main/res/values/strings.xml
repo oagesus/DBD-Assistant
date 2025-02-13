@@ -9,4 +9,8 @@
         <item>Old-New</item>
         <item>New-Old</item>
     </string-array>
+    <string-array name="spinner_items_random">
+        <item>Killer</item>
+        <item>Survivor</item>
+    </string-array>
 </resources>
