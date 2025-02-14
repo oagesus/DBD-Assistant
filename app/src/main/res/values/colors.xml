@@ -15,4 +15,7 @@
     <color name="white">#FFFFFF</color>
     <color name="red_killer">#D32B2A</color>
     <color name="blue_survivor">#375BA6</color>
+    <color name="red_killer_text">#e16a6a</color>
+    <color name="blue_survivor_text">#7995d3</color>
+    <color name="green_generate">#4da637</color>
 </resources>

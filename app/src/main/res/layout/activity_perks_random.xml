@@ -40,13 +40,11 @@
             android:theme="@style/CustomSpinnerDialogTheme"
             android:fontFamily="sans-serif"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="24dp"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button_generate"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="12dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
-            app:layout_constraintEnd_toStartOf="@+id/button_generate"
             app:layout_constraintHorizontal_chainStyle="packed" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -58,18 +56,70 @@
             android:textSize="16sp"
             android:fontFamily="sans-serif"
             android:textAllCaps="false"
-            android:background="@drawable/outline"
+            android:background="@drawable/outline_generate"
             android:paddingVertical="10dp"
             android:minHeight="0dp"
             android:includeFontPadding="false"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/spinner"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="24dp"
             android:layout_marginTop="24dp"
+            app:layout_constraintStart_toEndOf="@id/spinner"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="24dp" />
+
+        <!-- HorizontalScrollView wrapping text_generate -->
+        <HorizontalScrollView
+            android:id="@+id/horizontalScroll_generate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:scrollbars="horizontal"
+            android:fadingEdge="none"
+            android:scrollbarThumbVertical="@drawable/scrollbar_white"
+            android:scrollbarThumbHorizontal="@drawable/scrollbar_white"
+            app:layout_constraintTop_toBottomOf="@id/button_generate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/horizontalScroll_generate2"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp">
+
+            <TextView
+                android:id="@+id/text_generate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="Waiting for Perks to be generated..."
+                android:textSize="18sp"
+                android:textColor="@android:color/white" />
+        </HorizontalScrollView>
+
+        <!-- HorizontalScrollView wrapping text_generate2 -->
+        <HorizontalScrollView
+            android:id="@+id/horizontalScroll_generate2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:scrollbars="horizontal"
+            android:fadingEdge="none"
+            android:scrollbarThumbVertical="@drawable/scrollbar_white"
+            android:scrollbarThumbHorizontal="@drawable/scrollbar_white"
+            app:layout_constraintTop_toBottomOf="@id/horizontalScroll_generate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="24dp"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp">
+
+            <TextView
+                android:id="@+id/text_generate2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text=""
+                android:textSize="18sp"
+                android:textColor="@android:color/white" />
+        </HorizontalScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -114,7 +164,7 @@
                 android:src="@drawable/perk_very_rare" />
 
             <ImageView
-                android:id="@+id/shrine_perk_icon_3"
+                android:id="@+id/shrine_perk_icon_1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/icon_placeholder" />
@@ -140,7 +190,7 @@
                 android:src="@drawable/perk_very_rare" />
 
             <ImageView
-                android:id="@+id/shrine_perk_icon_1"
+                android:id="@+id/shrine_perk_icon_2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/icon_placeholder" />
@@ -166,7 +216,7 @@
                 android:src="@drawable/perk_very_rare" />
 
             <ImageView
-                android:id="@+id/shrine_perk_icon_4"
+                android:id="@+id/shrine_perk_icon_3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/icon_placeholder" />
@@ -191,7 +241,7 @@
                 android:src="@drawable/perk_very_rare" />
 
             <ImageView
-                android:id="@+id/shrine_perk_icon_2"
+                android:id="@+id/shrine_perk_icon_4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/icon_placeholder" />
