@@ -74,5 +74,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        ConstraintLayout buttonHookHelper = findViewById(R.id.buttonHookHelper);
+        buttonHookHelper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, HookHelperActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

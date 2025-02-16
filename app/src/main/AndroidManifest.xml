@@ -89,7 +89,15 @@
         <!-- Perks Random Activity -->
         <activity
             android:name=".PerksRandomActivity"
-            android:label="Shrine of Secrets"
+            android:label="Random Perks Generator"
+            android:theme="@style/Theme.DBDGuide"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!-- Hook Helper Activity -->
+        <activity
+            android:name=".HookHelperActivity"
+            android:label="Hook Helper"
             android:theme="@style/Theme.DBDGuide"
             android:screenOrientation="portrait">
         </activity>
