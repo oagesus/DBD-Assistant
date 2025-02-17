@@ -376,7 +376,7 @@
                     android:id="@+id/iconHookHelper"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:src="@drawable/icon_main_perks_random"
+                    android:src="@drawable/icon_main_hook_helper"
                     app:layout_constraintWidth_percent="0.4"
                     app:layout_constraintDimensionRatio="1:1"
                     app:layout_constraintTop_toTopOf="parent"

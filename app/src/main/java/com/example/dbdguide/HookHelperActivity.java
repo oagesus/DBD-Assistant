@@ -1,5 +1,6 @@
 package com.example.dbdguide;
 
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -8,18 +9,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import com.google.android.material.slider.Slider;
-import com.google.android.material.progressindicator.CircularProgressIndicator;
-import android.content.res.ColorStateList;
 import androidx.core.content.ContextCompat;
+
+import com.google.android.material.progressindicator.CircularProgressIndicator;
+import com.google.android.material.slider.Slider;
 
 public class HookHelperActivity extends AppCompatActivity {
 
-    // Counters for each container
+    // Counters for each container (for hook visibility)
     private int count1 = 0, count2 = 0, count3 = 0, count4 = 0;
 
     // Arrays to hold hook ImageViews for each container
     private ImageView[] hooks1, hooks2, hooks3, hooks4;
+
+    // “Stage” for the shrine perk icon for each container (from 0 to 4)
+    private int stage1 = 0, stage2 = 0, stage3 = 0, stage4 = 0;
+
+    // ImageViews for the shrine perk icons
+    private ImageView shrinePerkIcon1, shrinePerkIcon2, shrinePerkIcon3, shrinePerkIcon4;
 
     // Handler and Runnable for timer updates
     private Handler handler = new Handler();
@@ -27,9 +34,11 @@ public class HookHelperActivity extends AppCompatActivity {
     private Runnable timerRunnable;
     private Slider sliderTimer;
     private ColorStateList originalTrackColorActive, originalTrackColorInactive;
-    private ColorStateList originalThumbColor, originalHaloColor;
+    private ColorStateList originalThumbColor, originalHaloColor, originalTickColor;
     private CircularProgressIndicator progressCircle;
     private TextView textCountdown;
+
+    private TextView textTimerSet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +47,6 @@ public class HookHelperActivity extends AppCompatActivity {
 
         sliderTimer = findViewById(R.id.slider_timer);
 
-        sliderTimer = findViewById(R.id.slider_timer);
         float savedValue = getSharedPreferences("HookHelperPrefs", MODE_PRIVATE)
                 .getFloat("slider_value", 60f);  // Default to 60 if no saved value exists
         sliderTimer.setValue(savedValue);
@@ -47,11 +55,14 @@ public class HookHelperActivity extends AppCompatActivity {
         originalTrackColorInactive = sliderTimer.getTrackInactiveTintList();
         originalThumbColor = sliderTimer.getThumbTintList();
         originalHaloColor = sliderTimer.getHaloTintList();
+        originalTickColor = sliderTimer.getTickTintList();
 
         // Initialize progress circle
         progressCircle = findViewById(R.id.progress_circle);
         progressCircle.setMax((int) sliderTimer.getValue());  // Match slider's max
         progressCircle.setProgress(0);  // Start with empty circle
+
+        textTimerSet = findViewById(R.id.text_timer_set);
 
         // Initialize TextView for timer display
         textCountdown = findViewById(R.id.text_countdown);
@@ -92,8 +103,7 @@ public class HookHelperActivity extends AppCompatActivity {
         setHooksAlpha(hooks3, 0f);
         setHooksAlpha(hooks4, 0f);
 
-        // Initialize Slider
-        sliderTimer = findViewById(R.id.slider_timer);
+        // Initialize Slider (again, to set value range and step size)
         sliderTimer.setValueFrom(0);
         sliderTimer.setValueTo(80);
         sliderTimer.setStepSize(10);
@@ -136,6 +146,9 @@ public class HookHelperActivity extends AppCompatActivity {
                     sliderTimer.setTrackInactiveTintList(originalTrackColorInactive);
                     sliderTimer.setThumbTintList(originalThumbColor);
                     sliderTimer.setHaloTintList(originalHaloColor);
+                    sliderTimer.setTickTintList(originalTickColor);
+
+                    textTimerSet.setTextColor(ContextCompat.getColor(HookHelperActivity.this, R.color.white));
                 }
             }
         };
@@ -150,6 +163,9 @@ public class HookHelperActivity extends AppCompatActivity {
                 sliderTimer.setTrackInactiveTintList(ColorStateList.valueOf(ContextCompat.getColor(HookHelperActivity.this, R.color.darker_grey)));
                 sliderTimer.setThumbTintList(ColorStateList.valueOf(ContextCompat.getColor(HookHelperActivity.this, R.color.darker_grey)));
                 sliderTimer.setHaloTintList(ColorStateList.valueOf(ContextCompat.getColor(HookHelperActivity.this, R.color.darker_grey)));
+                sliderTimer.setTickTintList(ColorStateList.valueOf(ContextCompat.getColor(HookHelperActivity.this, R.color.darker_grey)));
+
+                textTimerSet.setTextColor(ContextCompat.getColor(HookHelperActivity.this, R.color.darker_grey));
 
                 // Restore original progress circle color
                 progressCircle.setIndicatorColor(ContextCompat.getColor(HookHelperActivity.this, android.R.color.white)); // Change to your actual original color
@@ -175,6 +191,9 @@ public class HookHelperActivity extends AppCompatActivity {
                 sliderTimer.setTrackInactiveTintList(originalTrackColorInactive);
                 sliderTimer.setThumbTintList(originalThumbColor);
                 sliderTimer.setHaloTintList(originalHaloColor);
+                sliderTimer.setTickTintList(originalTickColor);
+
+                textTimerSet.setTextColor(ContextCompat.getColor(HookHelperActivity.this, R.color.white));
 
                 // Set text color back to darker_grey when reset
                 textCountdown.setTextColor(ContextCompat.getColor(HookHelperActivity.this, R.color.darker_grey));
@@ -189,16 +208,59 @@ public class HookHelperActivity extends AppCompatActivity {
             }
         });
 
-        // Container 1 buttons
+        // Initialize shrine perk icon ImageViews
+        shrinePerkIcon1 = findViewById(R.id.shrine_perk_icon_1);
+        shrinePerkIcon2 = findViewById(R.id.shrine_perk_icon_2);
+        shrinePerkIcon3 = findViewById(R.id.shrine_perk_icon_3);
+        shrinePerkIcon4 = findViewById(R.id.shrine_perk_icon_4);
+
+        // Initialize and configure Clear Button
+        Button buttonHookClear = findViewById(R.id.button_hook_clear);
+        buttonHookClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Reset Container 1
+                setHooksAlpha(hooks1, 0f);
+                count1 = 0;
+                stage1 = 0;
+                shrinePerkIcon1.setImageResource(getResourceId("icon_hook_stage_1_0"));
+
+                // Reset Container 2
+                setHooksAlpha(hooks2, 0f);
+                count2 = 0;
+                stage2 = 0;
+                shrinePerkIcon2.setImageResource(getResourceId("icon_hook_stage_2_0"));
+
+                // Reset Container 3
+                setHooksAlpha(hooks3, 0f);
+                count3 = 0;
+                stage3 = 0;
+                shrinePerkIcon3.setImageResource(getResourceId("icon_hook_stage_3_0"));
+
+                // Reset Container 4
+                setHooksAlpha(hooks4, 0f);
+                count4 = 0;
+                stage4 = 0;
+                shrinePerkIcon4.setImageResource(getResourceId("icon_hook_stage_4_0"));
+            }
+        });
+
+        // --- Container 1 buttons ---
         Button buttonPlus1 = findViewById(R.id.button_plus_1);
         Button buttonMinus1 = findViewById(R.id.button_minus_1);
 
         buttonPlus1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Update hooks for container 1
                 if (count1 < hooks1.length) {
                     hooks1[count1].setAlpha(1f);
                     count1++;
+                }
+                // Increase stage (max 3) and update shrine perk icon image
+                if (stage1 < 3) {
+                    stage1++;
+                    shrinePerkIcon1.setImageResource(getResourceId("icon_hook_stage_1_" + stage1));
                 }
             }
         });
@@ -206,14 +268,20 @@ public class HookHelperActivity extends AppCompatActivity {
         buttonMinus1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Update hooks for container 1
                 if (count1 > 0) {
                     count1--;
                     hooks1[count1].setAlpha(0f);
                 }
+                // Decrease stage (min 0) and update shrine perk icon image
+                if (stage1 > 0) {
+                    stage1--;
+                    shrinePerkIcon1.setImageResource(getResourceId("icon_hook_stage_1_" + stage1));
+                }
             }
         });
 
-        // Container 2 buttons
+        // --- Container 2 buttons ---
         Button buttonPlus2 = findViewById(R.id.button_plus_2);
         Button buttonMinus2 = findViewById(R.id.button_minus_2);
 
@@ -223,6 +291,10 @@ public class HookHelperActivity extends AppCompatActivity {
                 if (count2 < hooks2.length) {
                     hooks2[count2].setAlpha(1f);
                     count2++;
+                }
+                if (stage2 < 3) {
+                    stage2++;
+                    shrinePerkIcon2.setImageResource(getResourceId("icon_hook_stage_2_" + stage2));
                 }
             }
         });
@@ -234,10 +306,14 @@ public class HookHelperActivity extends AppCompatActivity {
                     count2--;
                     hooks2[count2].setAlpha(0f);
                 }
+                if (stage2 > 0) {
+                    stage2--;
+                    shrinePerkIcon2.setImageResource(getResourceId("icon_hook_stage_2_" + stage2));
+                }
             }
         });
 
-        // Container 3 buttons
+        // --- Container 3 buttons ---
         Button buttonPlus3 = findViewById(R.id.button_plus_3);
         Button buttonMinus3 = findViewById(R.id.button_minus_3);
 
@@ -247,6 +323,10 @@ public class HookHelperActivity extends AppCompatActivity {
                 if (count3 < hooks3.length) {
                     hooks3[count3].setAlpha(1f);
                     count3++;
+                }
+                if (stage3 < 3) {
+                    stage3++;
+                    shrinePerkIcon3.setImageResource(getResourceId("icon_hook_stage_3_" + stage3));
                 }
             }
         });
@@ -258,10 +338,14 @@ public class HookHelperActivity extends AppCompatActivity {
                     count3--;
                     hooks3[count3].setAlpha(0f);
                 }
+                if (stage3 > 0) {
+                    stage3--;
+                    shrinePerkIcon3.setImageResource(getResourceId("icon_hook_stage_3_" + stage3));
+                }
             }
         });
 
-        // Container 4 buttons
+        // --- Container 4 buttons ---
         Button buttonPlus4 = findViewById(R.id.button_plus_4);
         Button buttonMinus4 = findViewById(R.id.button_minus_4);
 
@@ -271,6 +355,10 @@ public class HookHelperActivity extends AppCompatActivity {
                 if (count4 < hooks4.length) {
                     hooks4[count4].setAlpha(1f);
                     count4++;
+                }
+                if (stage4 < 3) {
+                    stage4++;
+                    shrinePerkIcon4.setImageResource(getResourceId("icon_hook_stage_4_" + stage4));
                 }
             }
         });
@@ -282,6 +370,10 @@ public class HookHelperActivity extends AppCompatActivity {
                     count4--;
                     hooks4[count4].setAlpha(0f);
                 }
+                if (stage4 > 0) {
+                    stage4--;
+                    shrinePerkIcon4.setImageResource(getResourceId("icon_hook_stage_4_" + stage4));
+                }
             }
         });
     }
@@ -291,5 +383,10 @@ public class HookHelperActivity extends AppCompatActivity {
         for (ImageView hook : hooks) {
             hook.setAlpha(alpha);
         }
+    }
+
+    // Helper method to get resource ID safely
+    private int getResourceId(String name) {
+        return getResources().getIdentifier(name, "drawable", getPackageName());
     }
 }
