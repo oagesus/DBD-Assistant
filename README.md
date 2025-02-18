@@ -8,4 +8,5 @@
   <li><p><b>Map Layouts</b>: Filter by Map Names and a variety of sorting options to view the Map Layouts of each available Map to increase your chances of survival.</p></li>
   <li><p><b>Shrine of Secrets</b>: View the currently available Perks in the Shrine of Secrets, along with the countdown for the next reset.</p></li>
   <li><p><b>Random Perks Generator</b>: Generate 4 random Killer or Survivor Perks of all currently available Perks.</p></li>
+  <li><p><b>Hook Helper</b>: Keep track manually which Survivor you hooked and start a Timer when a Survivor gets unhooked.</p></li>
 </ul>
