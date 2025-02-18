@@ -2,6 +2,8 @@ package com.example.dbdguide;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +31,16 @@ public class ShrineOfSecretsActivity extends AppCompatActivity {
     private final OkHttpClient client = new OkHttpClient();
     private CountDownTimer countDownTimer; // Hold a reference so we can cancel if needed
 
+    // Handler and Runnable to poll the website every 10 seconds.
+    private final Handler fetchHandler = new Handler(Looper.getMainLooper());
+    private final Runnable fetchRunnable = new Runnable() {
+        @Override
+        public void run() {
+            fetchShrineData();
+            fetchHandler.postDelayed(this, 10 * 1000); // Poll every 10 seconds
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,14 +59,25 @@ public class ShrineOfSecretsActivity extends AppCompatActivity {
         // Start the weekly countdown (which also updates the reset date)
         startCountdown();
 
-        // Fetch shrine perk sources from the web
+        // Fetch shrine perk data initially and start polling.
         fetchShrineData();
+        fetchHandler.postDelayed(fetchRunnable, 10 * 1000);
 
         // Set drawable resources for each ImageView
         setDrawableResources();
 
         // Set click listeners for each ImageView
         setClickListeners();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
+        // Cancel the periodic polling to prevent memory leaks.
+        fetchHandler.removeCallbacks(fetchRunnable);
     }
 
     /**
@@ -85,7 +108,6 @@ public class ShrineOfSecretsActivity extends AppCompatActivity {
         }
 
         // Update the date TextView with the reset date
-        // Format: "Tuesday, Feb, 11 2025"
         SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy (EEEE)");
         sdf.setTimeZone(viennaTZ);
         String dateString = sdf.format(target.getTime());
@@ -205,6 +227,10 @@ public class ShrineOfSecretsActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Fetches shrine data from the website. After fetching, it compares the newly retrieved perk data
+     * with the currently stored data. If there is any change, the UI is updated.
+     */
     private void fetchShrineData() {
         new Thread(() -> {
             try {
@@ -216,33 +242,33 @@ public class ShrineOfSecretsActivity extends AppCompatActivity {
                     if (response.isSuccessful() && response.body() != null) {
                         Document doc = Jsoup.parse(response.body().string());
 
-                        // Debugging: Print the entire HTML response to check if the content is being loaded correctly
-                        System.out.println("Fetched HTML content:\n" + doc.toString());
-
                         // Get all elements with the class "cidahu2"
                         Elements elements = doc.getElementsByClass("cidahu2");
 
-                        // Ensure there are at least 4 elements
+                        String newPerkSrc1 = null, newPerkSrc2 = null, newPerkSrc3 = null, newPerkSrc4 = null;
                         if (elements.size() >= 4) {
-                            shrinePerkSrc1 = extractPerkNameFromElement(elements.get(0));
-                            shrinePerkSrc2 = extractPerkNameFromElement(elements.get(1));
-                            shrinePerkSrc3 = extractPerkNameFromElement(elements.get(2));
-                            shrinePerkSrc4 = extractPerkNameFromElement(elements.get(3));
-                        } else {
-                            // Handle case where there are fewer than 4 elements
-                            shrinePerkSrc1 = null;
-                            shrinePerkSrc2 = null;
-                            shrinePerkSrc3 = null;
-                            shrinePerkSrc4 = null;
+                            newPerkSrc1 = extractPerkNameFromElement(elements.get(0));
+                            newPerkSrc2 = extractPerkNameFromElement(elements.get(1));
+                            newPerkSrc3 = extractPerkNameFromElement(elements.get(2));
+                            newPerkSrc4 = extractPerkNameFromElement(elements.get(3));
                         }
 
-                        // Debugging: Print out each of the image URLs being retrieved
-                        System.out.println("Shrine Perk 1 URL: " + shrinePerkSrc1);
-                        System.out.println("Shrine Perk 2 URL: " + shrinePerkSrc2);
-                        System.out.println("Shrine Perk 3 URL: " + shrinePerkSrc3);
-                        System.out.println("Shrine Perk 4 URL: " + shrinePerkSrc4);
+                        // Check if any of the new data is different from the currently stored data.
+                        boolean hasChanged = !areEqual(shrinePerkSrc1, newPerkSrc1) ||
+                                !areEqual(shrinePerkSrc2, newPerkSrc2) ||
+                                !areEqual(shrinePerkSrc3, newPerkSrc3) ||
+                                !areEqual(shrinePerkSrc4, newPerkSrc4);
 
-                        runOnUiThread(() -> updateUI());
+                        if (hasChanged) {
+                            // Update stored values
+                            shrinePerkSrc1 = newPerkSrc1;
+                            shrinePerkSrc2 = newPerkSrc2;
+                            shrinePerkSrc3 = newPerkSrc3;
+                            shrinePerkSrc4 = newPerkSrc4;
+
+                            // Update the UI on the main thread
+                            runOnUiThread(() -> updateUI());
+                        }
                     }
                 }
             } catch (IOException e) {
@@ -251,23 +277,25 @@ public class ShrineOfSecretsActivity extends AppCompatActivity {
         }).start();
     }
 
+    /**
+     * Null-safe comparison of two strings.
+     */
+    private boolean areEqual(String a, String b) {
+        return (a == null && b == null) || (a != null && a.equals(b));
+    }
+
     private String extractPerkNameFromElement(org.jsoup.nodes.Element element) {
         if (element != null) {
             // Look for the first <a> tag and get its href attribute
             String hrefText = element.getElementsByTag("a").first().attr("href");
 
-            // Debugging: Print the href attribute to ensure it's being extracted
-            System.out.println("Href text: " + hrefText);
-
-            // Check if "/perks/" exists and remove it if found
+            // Remove the "/perks/" part, colons, and replace "&" with "and"
             if (hrefText.contains("/perks/")) {
                 hrefText = hrefText.replace("/perks/", "");
             }
-
             if (hrefText.contains(":")) {
                 hrefText = hrefText.replace(":", "");
             }
-
             if (hrefText.contains("&")) {
                 hrefText = hrefText.replace("&", "and");
             }
@@ -282,22 +310,17 @@ public class ShrineOfSecretsActivity extends AppCompatActivity {
             int survivorResId = getResources().getIdentifier(survivorDrawableName, "drawable", getPackageName());
 
             if (killerResId != 0) {
-                System.out.println("Found drawable: " + killerDrawableName);
                 return killerDrawableName;
             } else if (survivorResId != 0) {
-                System.out.println("Found drawable: " + survivorDrawableName);
                 return survivorDrawableName;
             }
-
-            // Debugging: Print when no drawable was found
-            System.out.println("No matching drawable found for: " + hrefText);
+            // If no drawable is found, return null.
         }
-
         return null;
     }
 
     private void updateUI() {
-        // Set drawable resources after fetching data
+        // Update the displayed images and click listeners
         setDrawableResources();
         setClickListeners();
     }

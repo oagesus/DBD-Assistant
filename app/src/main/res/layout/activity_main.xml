@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
     android:background="@color/darker_grey">
 
     <!-- Title Text -->
@@ -12,7 +13,7 @@
         android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Dead by Daylight\nAssistant"
+        android:text="DBD\nAssistant"
         android:textColor="#ffffff"
         android:textSize="24sp"
         android:gravity="center"
@@ -28,6 +29,7 @@
         android:layout_height="0dp"
         android:fillViewport="true"
         android:scrollbars="vertical"
+        android:layout_marginTop="8dp"
         android:scrollbarThumbVertical="@color/white"
         app:layout_constraintTop_toBottomOf="@id/textView"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -38,7 +40,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp">
 
             <!-- Vertical Guideline for 50% split -->

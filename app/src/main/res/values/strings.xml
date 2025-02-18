@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DBD Guide</string>
+    <string name="app_name">DBD Assistant</string>
     <string name="close_popup">Close</string>
     <string name="button_icon_description">Icon for the button</string>
     <string name="replica_icon_description">Replica Button Icon</string>

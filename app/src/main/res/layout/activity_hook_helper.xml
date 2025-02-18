@@ -43,9 +43,9 @@
             android:textStyle="bold"
             android:textColor="@android:color/white"
             app:layout_constraintStart_toStartOf="@id/slider_timer"
-            app:layout_constraintEnd_toEndOf="@id/slider_timer"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/slider_timer"/>
+            app:layout_constraintBottom_toTopOf="@id/slider_timer"
+            android:layout_marginStart="12dp"/>
 
         <!-- Slider -->
         <com.google.android.material.slider.Slider
