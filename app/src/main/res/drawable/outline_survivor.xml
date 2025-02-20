@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Transparent background -->
-    <solid android:color="@color/blue_survivor"/>
-
-    <!-- Optional corner radius -->
-    <corners android:radius="2dp"/>
-
-    <!-- Border definition -->
-    <stroke
-        android:color="#ffffff"
-        android:width="2dp"/>
-</shape>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Pressed state: Light grey background with white border -->
+    <item android:state_pressed="true">
+        <shape>
+            <solid android:color="@color/blue_survivor_text"/>
+            <corners android:radius="2dp"/>
+            <stroke
+                android:color="#ffffff"
+                android:width="2dp"/>
+        </shape>
+    </item>
+    <!-- Default state: Transparent background with white border -->
+    <item>
+        <shape>
+            <solid android:color="@color/blue_survivor"/>
+            <corners android:radius="2dp"/>
+            <stroke
+                android:color="#ffffff"
+                android:width="2dp"/>
+        </shape>
+    </item>
+</selector>

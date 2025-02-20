@@ -1,5 +1,7 @@
 package com.example.dbdguide;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ValueAnimator;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.os.Handler;
@@ -157,7 +159,7 @@ public class HookHelperActivity extends AppCompatActivity {
         buttonTimerStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Disable Slider and set colors to grey
+                // Disable Slider and set its colors to darker_grey.
                 sliderTimer.setEnabled(false);
                 sliderTimer.setTrackActiveTintList(ColorStateList.valueOf(ContextCompat.getColor(HookHelperActivity.this, R.color.darker_grey)));
                 sliderTimer.setTrackInactiveTintList(ColorStateList.valueOf(ContextCompat.getColor(HookHelperActivity.this, R.color.darker_grey)));
@@ -167,13 +169,23 @@ public class HookHelperActivity extends AppCompatActivity {
 
                 textTimerSet.setTextColor(ContextCompat.getColor(HookHelperActivity.this, R.color.darker_grey));
 
-                // Restore original progress circle color
-                progressCircle.setIndicatorColor(ContextCompat.getColor(HookHelperActivity.this, android.R.color.white)); // Change to your actual original color
+                // Animate progress circle indicator color from its current color (first element of the array) to white.
+                int currentColor = progressCircle.getIndicatorColor()[0];
+                int targetColor = ContextCompat.getColor(HookHelperActivity.this, android.R.color.white);
+                ValueAnimator colorAnimator = ValueAnimator.ofObject(new ArgbEvaluator(), currentColor, targetColor);
+                colorAnimator.setDuration(50); // Duration in milliseconds (adjust as needed)
+                colorAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator animator) {
+                        progressCircle.setIndicatorColor((int) animator.getAnimatedValue());
+                    }
+                });
+                colorAnimator.start();
 
-                // Set text color to white when timer starts
+                // Set text color to white when timer starts.
                 textCountdown.setTextColor(ContextCompat.getColor(HookHelperActivity.this, android.R.color.white));
 
-                // Reset progress and start timer
+                // Reset progress and start timer.
                 progressCircle.setMax((int) sliderTimer.getValue());
                 progressCircle.setProgress(0);
                 handler.removeCallbacks(timerRunnable);

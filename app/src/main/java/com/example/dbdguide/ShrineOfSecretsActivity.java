@@ -56,6 +56,16 @@ public class ShrineOfSecretsActivity extends AppCompatActivity {
         textTimer = findViewById(R.id.textTimer);
         textDate  = findViewById(R.id.textDate);
 
+        // Check if MainActivity passed initial shrine data and update UI immediately.
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            shrinePerkSrc1 = extras.getString("shrinePerkSrc1");
+            shrinePerkSrc2 = extras.getString("shrinePerkSrc2");
+            shrinePerkSrc3 = extras.getString("shrinePerkSrc3");
+            shrinePerkSrc4 = extras.getString("shrinePerkSrc4");
+            updateUI();
+        }
+
         // Start the weekly countdown (which also updates the reset date)
         startCountdown();
 
